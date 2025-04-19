@@ -11,6 +11,6 @@ urlpatterns = [
     path('articles/delete/<int:pk>/',article_views.delete_article,name='delete_article'),
     
     # auth endpoints 
-    path('auth/register',auth_views.register,name='register'),
-    path('auth/login', auth_views.login_user,name='login')
+    path('auth/register/',auth_views.register,name='register'),
+    path('auth/login/', auth_views.login_user,name='login')
     ]
