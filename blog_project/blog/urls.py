@@ -1,11 +1,16 @@
 
 from  django.urls  import  path
-from  blog import views
+from  .views import article_views,auth_views
 
 urlpatterns = [
-    path('articles/', views.get_articles,name='get_articles'),
-    path('articles/<int:pk>/', views.get_article,name='get_article'),
-    path('articles/create/', views.create_article,name='create_article'),
-    path('articles/update/<int:pk>/', views.update_article,name='update_article'),
-    path('articles/delete/<int:pk>/',views.delete_article,name='delerte_article')
-]
+    # article endpoints
+    path('articles/', article_views.get_articles,name='get_articles'),
+    path('articles/<int:pk>/', article_views.get_article,name='get_article'),
+    path('articles/create/', article_views.create_article,name='create_article'),
+    path('articles/update/<int:pk>/', article_views.update_article,name='update_article'),
+    path('articles/delete/<int:pk>/',article_views.delete_article,name='delete_article'),
+    
+    # auth endpoints 
+    path('auth/register',auth_views.register,name='register'),
+    path('auth/login', auth_views.login_user,name='login')
+    ]
