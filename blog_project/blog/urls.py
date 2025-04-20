@@ -1,6 +1,6 @@
 
 from  django.urls  import  path
-from  .views import article_views,auth_views
+from  .views import article_views,auth_views,gemini_views
 
 urlpatterns = [
     # article endpoints
@@ -12,5 +12,8 @@ urlpatterns = [
     
     # auth endpoints 
     path('auth/register/',auth_views.register,name='register'),
-    path('auth/login/', auth_views.login_user,name='login')
+    path('auth/login/', auth_views.login_user,name='login'),
+    
+    # ai article endpoints 
+    path('articles/generate/',gemini_views.generate_and_store_article,name='generate_article' )
     ]
