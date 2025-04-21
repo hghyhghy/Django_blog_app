@@ -22,3 +22,12 @@ def generate_and_store_article(request):
         return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
+
+@api_view(['GET'])
+def get_generated_articles(request):
+    try:
+        generated_articles  =  Article.objects.filter(is_generated  = True).order_by('-id')
+        serializer  =   ArticleSerializer(generated_articles,many=True)
+        return Response(serializer.data ,  status=status.HTTP_200_OKt)
+    except Exception as e:
+        return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
