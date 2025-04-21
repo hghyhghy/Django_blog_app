@@ -15,5 +15,6 @@ urlpatterns = [
     path('auth/login/', auth_views.login_user,name='login'),
     
     # ai article endpoints 
-    path('articles/generate/',gemini_views.generate_and_store_article,name='generate_article' )
+    path('articles/generate/',gemini_views.generate_and_store_article,name='generate_article' ),
+    path('articles/get/',gemini_views.get_generated_articles,name='get_generated_article'),
     ]
