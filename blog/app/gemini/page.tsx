@@ -69,7 +69,7 @@ export  default  function GenerateArticlePage(){
     }
 
     return (
-        <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
+        <div className="min-h-screen bg-gray-100 flex flex-col gap-5 items-center justify-center px-4">
                 <div className="bg-white shadow-md rounded-lg p-8 max-w-2xl w-full">
                         <input 
                         type="text"
@@ -103,26 +103,29 @@ export  default  function GenerateArticlePage(){
                             )}
 
 
-                                {Array.isArray(article) && article.length >  0 && (
+                </div>
+                <div>
+                    
+                {Array.isArray(article) && article.length >  0 && (
 
-                                    <div className="mt-6 space-y-4">
-                                        {article.map((art) =>  (
-                                            <div
-                                            key={art.id}
-                                            className="p-4 bg-gray-50 border border-gray-200 rounded-md"
+<div className="mt-6 space-y-4">
+    {article.map((art) =>  (
+        <div
+        key={art.id}
+        className="p-4 bg-gray-50 border border-gray-200 rounded-md"
 
-                                            
-                                            >
-                                                    <h2 className="text-xl font-semibold mb-2 text-gray-700">
-                                                        {art.title}
-                                                    </h2>
-                                                    <p  className="text-gray-800 whitespace-pre-line">{art.content} </p>
+        
+        >
+                <h2 className="text-xl font-semibold mb-2 text-gray-700">
+                    {art.title}
+                </h2>
+                <p  className="text-gray-800 whitespace-pre-line">{art.content} </p>
 
-                                            </div>
-                                        ))}
+        </div>
+    ))}
 
-                                    </div>
-                                )}
+</div>
+)}
                 </div>
         </div>
     )
