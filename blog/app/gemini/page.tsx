@@ -9,7 +9,7 @@ export  default  function GenerateArticlePage(){
 
     const [topic, setTopic] = useState('')
     const [loading, setLoading] = useState(false)
-    const [article, setArticle] = useState<string| null>(null)
+    const [article, setArticle] = useState<any[]>([])
     const [error, setError] = useState<string|null>(null)
 
     const [isPending ,  startTransition] =  useTransition();
@@ -26,7 +26,7 @@ export  default  function GenerateArticlePage(){
                 if (!response.ok) {
                     throw new Error(data.error || 'Failed to fetch latest article');
                 }
-                setArticle(data.content)
+                setArticle(data)
 
             }  catch (err: any) {
                 setError(err.message);
@@ -38,7 +38,6 @@ export  default  function GenerateArticlePage(){
 
     const handleGenerate =  async() => {
         setLoading(true)
-        setArticle(null)
         setError(null)
 
         try {
@@ -57,7 +56,9 @@ export  default  function GenerateArticlePage(){
               }
             
             startTransition(() => {
-                setArticle(data.content)
+
+                setArticle((prev) => [data , ...prev])
+                setTopic('')
             })
             
         } catch (error:any) {
@@ -101,18 +102,27 @@ export  default  function GenerateArticlePage(){
                             </div>
                             )}
 
-                            {article && (   
 
-                                <div className="mt-6 p-4 bg-gray-50 border border-gray-200 rounded-md">
+                                {Array.isArray(article) && article.length >  0 && (
+
+                                    <div className="mt-6 space-y-4">
+                                        {article.map((art) =>  (
+                                            <div
+                                            key={art.id}
+                                            className="p-4 bg-gray-50 border border-gray-200 rounded-md"
+
+                                            
+                                            >
                                                     <h2 className="text-xl font-semibold mb-2 text-gray-700">
-                                        Generated Article
-                                        </h2>
+                                                        {art.title}
+                                                    </h2>
+                                                    <p  className="text-gray-800 whitespace-pre-line">{art.content} </p>
 
-                                        <p className="text-gray-800 whitespace-pre-line">
-                                            {article}
-                                        </p>
-                                </div>
-                            )}
+                                            </div>
+                                        ))}
+
+                                    </div>
+                                )}
                 </div>
         </div>
     )
