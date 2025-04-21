@@ -1,6 +1,7 @@
 
 from  django.urls  import  path
 from  .views import article_views,auth_views,gemini_views
+from  search import search
 
 urlpatterns = [
     # article endpoints
@@ -17,4 +18,7 @@ urlpatterns = [
     # ai article endpoints 
     path('articles/generate/',gemini_views.generate_and_store_article,name='generate_article' ),
     path('articles/get/',gemini_views.get_generated_articles,name='get_generated_article'),
-    ]
+    
+    # search  functionality endpoints 
+    path('articles/search/' ,  search.search_articles,  name='search_articles')
+]
