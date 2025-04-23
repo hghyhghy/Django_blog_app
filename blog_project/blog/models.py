@@ -6,6 +6,7 @@ class Article(models.Model):
     content =  models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     is_generated = models.BooleanField(default=False) #optional flag for the ai generated blogs 
+    bookmarked_by =  models.ManyToManyField(User,related_name='bookmarked_articles', blank=True)
     
     
 class  Comment(models.Model):
