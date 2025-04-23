@@ -1,7 +1,8 @@
 
 from  django.urls  import  path
 from  .views import article_views,auth_views,gemini_views
-from  search import search
+from  .search import search
+from .comment import views
 
 urlpatterns = [
     # article endpoints
@@ -20,5 +21,9 @@ urlpatterns = [
     path('articles/get/',gemini_views.get_generated_articles,name='get_generated_article'),
     
     # search  functionality endpoints 
-    path('articles/search/' ,  search.search_articles,  name='search_articles')
+    path('articles/search/' ,  search.search_articles,  name='search_articles'),
+    # url path  for the  comments
+    
+    path('articles/<int:article_id>/comments/', views.get_comments, name='get_comments'),
+    path('articles/<int:article_id>/comments/add/', views.post_comment, name='post_comment'),
 ]
