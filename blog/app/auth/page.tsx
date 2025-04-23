@@ -2,6 +2,7 @@
 'use client'
 import React, { useState } from "react"
 import { useRouter } from "next/navigation"
+import Cookies from 'js-cookie'
 const BASE_URL = 'http://127.0.0.1:8000/auth';
 
 export default function  AuthPage(){
@@ -31,7 +32,10 @@ export default function  AuthPage(){
 
         const data  =  await res.json()
         if (res.ok){
-            router.push('articles/')
+            if (data.token){
+                Cookies.set('token',data.token,{expires:7})
+            }
+            router.push('/middle')
 
         }else{
             alert(data.error || 'Something went wrong')
