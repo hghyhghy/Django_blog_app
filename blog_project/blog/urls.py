@@ -3,6 +3,7 @@ from  django.urls  import  path
 from  .views import article_views,auth_views,gemini_views
 from  .search import search
 from .comment import views
+from .bookmark import bookmark_views
 
 urlpatterns = [
     # article endpoints
@@ -26,4 +27,8 @@ urlpatterns = [
     
     path('articles/<int:article_id>/comments/', views.get_comments, name='get_comments'),
     path('articles/<int:article_id>/comments/add/', views.post_comment, name='post_comment'),
+    
+    # endpoint for adding bookmark  
+    path('articles/<int:article_id>/bookmark/', bookmark_views.toggle_bookmark, name='toggle_bookmark'),
+    path('articles/bookmarked/', bookmark_views.get_bookmarked_articles, name='get_bookmarked_articles'),
 ]
