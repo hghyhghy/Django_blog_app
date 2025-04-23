@@ -138,20 +138,27 @@ export default function ArticlesPage () {
                                             Reply
                                         </button>
 
-                                        {comment.replies?.map((reply) => (
+                                            {comment.replies  && comment.replies.length >  0 && (
+                                                <div
+                                                className="ml-6   mt-2"
+                                                >
+                                                    {comment.replies.map((reply) => (
+                                                        <div
+                                                        key={reply.id}
+                                                         className="text-sm text-gray-800 mb-1"
+                                                        >
+                                                            <strong>
+                                                                {reply.user}
+                                                            </strong> :
+                                                            <strong>
+                                                                {reply.content}
+                                                            </strong>
 
-                                            <div
-                                            key={reply.id}
-                                            className="ml-6 mt-2 text-sm text-gray-800"
-                                            >
-                                                <strong>
-                                                    {reply.user}
-                                                </strong>:
-                                                <strong>
-                                                    {reply.content}
-                                                </strong>
-                                            </div>
-                                        ))}
+                                                        </div>
+                                                    ))}
+
+                                                </div>
+                                            )}
                                 </div>
 
 
