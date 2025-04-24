@@ -23,7 +23,7 @@ def toggle_bookmark(request,article_id):
 
     else:
         
-        article.bookmarked_by.create(user)
+        article.bookmarked_by.add(user)
         return Response({'message' : 'Bookmark added '})
     
 
